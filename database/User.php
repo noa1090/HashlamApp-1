@@ -165,3 +165,20 @@ class User {
     }
 
 }
+
+    /**
+     * get user from database
+     * return false if was not found
+     * @param array $user - a user name to search for
+     * @return array $result - found user
+     */
+    public static function getUser($user) {
+        $db = new Database();
+        $q = "SELECT * FROM users WHERE username='{$user}'";
+        $result = $db->createQuery($q);
+        if (count($result) > 0) {
+            return $result;
+        } else {
+            return FALSE;
+        }
+    }
